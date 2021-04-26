@@ -24,6 +24,7 @@ Sa personnalité en privé et en public son très différentes: d'un coté actri
 ## Héritage
 - L'invention de Hedy Lamarr n'a pas permis aux alliés de gagner la guerre. Pourquoi ? Malgré le dépot du brevet, la technologie n'a été implémentée que vingt ans plus tard
 - Hedy n'a pas été immédiatement recompensée pour son travail: peut être à cause de sa nationalité, son sexe, son statut de star ?
+- Elle même n'a jamais évoqué publiquement ses inventions et a signé le brevet avec le nom de famille de son mari de l'époque
 - Après l'arrivée de son brevet dans le domaine public, son invention est réutilisée dans l'élaboration de nombreuses technologies que nous utilisons encore aujourd'hui: Wi-Fi, Bluetooth, GPS
 - Des années après sa mort, elle est enfin reconnue à sa juste valeur: actrice et inventrice
 - Que retenir de Hedy Lamarr ? Très vite reconnue par sa beauté et convoitée à Hollywood, mais son inventivité, son intelligence et persévérance longtemps ignorés
