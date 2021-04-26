@@ -27,4 +27,4 @@ Sa personnalité en privé et en public sont très différentes: d'un coté actr
 - Elle même n'a jamais évoqué publiquement ses inventions et a signé le brevet avec le nom de famille de son mari de l'époque
 - Après l'arrivée de son brevet dans le domaine public, son invention donne naissance à des variantes élaborées pour de nombreuses technologies que nous utilisons encore aujourd'hui: Wi-Fi, Bluetooth, GPS
 - Des années après sa mort, elle est enfin reconnue à sa juste valeur: actrice et inventrice
-- Que retenir de Hedy Lamarr ? Très vite reconnue par sa beauté et convoitée à Hollywood en son temps, mais son inventivité, son intelligence longtemps ignorés - alors qu'aujourd'hui, il y a bien plus de gens qui utilisent indirectement ses inventions qu'elle n'aurait pu imaginer.
+- Que retenir de Hedy Lamarr ? Très vite reconnue pour sa beauté et convoitée à Hollywood en son temps, son inventivité, son intelligence sont longtemps ignorés. Pourtant personne n'aurait pu imaginer qu'à ce jour des milliards de gens utilisent indirectement ses inventions.
