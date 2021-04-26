@@ -5,8 +5,9 @@
  - Arrête les études tôt et se consacre à sa carrière d'actrice
  - On remarque sa grande beauté très tôt et ses parents essaient de la marier jeune
  - Elle devient une star dès les années 30 en Europe et décide de partir à Hollywood
- - Elle ne laisse pas indifférent: mariée six fois, exotique, sex symbol, considérée comme une des plus belles femmes du monde
- - A tourné avec de grands acteurs américains de l'époque: Clark Gable, James Stewart durant plus de vingt ans de carrière
+ - Elle ne laisse pas indifférent: mariée six fois, elle a réinventé sa vie en Amérique
+ - A tourné avec de grands acteurs américains de l'époque: Clark Gable, James Stewart
+ - Plus de vingt ans de carrière à Hollywood et collaboration avec les meilleurs réalisateurs de l'époque dans des comédies, films noirs, thrillers, etc.
 
 ## Inventrice
 Sa personnalité en privé et en public son très différentes: d'un coté actrice reconnue, de l'autre inventrice
