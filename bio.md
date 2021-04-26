@@ -10,7 +10,7 @@
  - Plus de vingt ans de carrière à Hollywood et collaboration avec les meilleurs réalisateurs de l'époque dans des comédies, films noirs, thrillers, etc.
 
 ## Inventrice
-Sa personnalité en privé et en public son très différentes: d'un coté actrice reconnue, de l'autre inventrice
+Sa personnalité en privé et en public sont très différentes: d'un coté actrice reconnue, de l'autre inventrice
 - Elle a arrêté les études très tôt mais aime rechercher et bricoler des inventions dans son temps libre
 - Durant la seconde guerre mondiale, elle s'allie avec l'inventeur américain Howard Hughes et améliore le design de ses avions en s'inspirant de la forme des oiseaux les plus rapides
 ### Etalement de spectre par saut de fréquence
