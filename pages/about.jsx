@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from 'styles/Grid.module.css';
 
 const About = ({ members }) => (
@@ -16,6 +17,9 @@ const About = ({ members }) => (
       <div className={styles.grid}>
         {members.map(({ id, name, githubUsername, role, stack }) => (
           <a href={`https://github.com/${githubUsername}`} className={styles.card} key={id}>
+            <div className={styles.avatar}>
+              <Image src={`https://github.com/${githubUsername}.png`} layout="fill" />
+            </div>
             <h3>{name} &rarr;</h3>
             <p>{role}</p>
             <p>{stack}</p>
