@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from '../styles/Grid.module.css';
+import styles from 'styles/Grid.module.css';
 
 const About = ({ members }) => (
   <div className={styles.container}>

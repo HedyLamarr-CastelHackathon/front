@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Grid.module.css';
+import styles from 'styles/Grid.module.css';
 
 const Home = () => (
   <div className={styles.container}>
