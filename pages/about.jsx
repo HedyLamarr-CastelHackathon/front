@@ -28,9 +28,10 @@ const About = ({ members }) => (
   </>
 );
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
-    const members = await get('/users');
+    const res = await get('/users');
+    const members = res['hydra:member'];
     return {
       props: {
         members,
