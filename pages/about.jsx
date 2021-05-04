@@ -1,3 +1,4 @@
+import { get } from 'lib/api';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from 'styles/Grid.module.css';
@@ -13,14 +14,14 @@ const About = ({ members }) => (
     <p className="description">#CastelHackathon</p>
 
     <div className={styles.grid}>
-      {members.map(({ id, name, githubUsername, role, stack }) => (
-        <a href={`https://github.com/${githubUsername}`} className={styles.card} key={id}>
-          <div className={styles.avatar}>
-            <Image src={`https://github.com/${githubUsername}.png`} layout="fill" />
-          </div>
-          <h3>{name} &rarr;</h3>
-          <p>{role}</p>
-          <p>{stack}</p>
+      {members.map(({ id, firstname, lastname, gitHub, job, description }) => (
+        <a href={gitHub} className={styles.card} key={id}>
+          <div className={styles.avatar}>{gitHub !== '' ? <Image src={`${gitHub}.png`} layout="fill" /> : null}</div>
+          <h3>
+            {firstname} {lastname} &rarr;
+          </h3>
+          <p>{job}</p>
+          <p>{description}</p>
         </a>
       ))}
     </div>
@@ -28,16 +29,21 @@ const About = ({ members }) => (
 );
 
 export async function getStaticProps() {
-  return {
-    props: {
-      members: [
-        { id: 1, name: 'Benjamin Cloquet', githubUsername: 'benjamincloquet', role: 'Front End Developer', stack: 'React, Next.js' },
-        { id: 2, name: 'Cyril Vassallo', githubUsername: 'cyril-vassallo', role: 'Back End Developer', stack: 'Symfony' },
-        { id: 3, name: 'Younes Boukobaa', githubUsername: 'foybkaa', role: 'Back End Developer', stack: '' },
-        { id: 4, name: 'Vincent Landrieux', githubUsername: 'VincentLandrieux', role: 'Front End Developer', stack: '' },
-      ],
-    },
-  };
+  try {
+    const members = await get('/users');
+    return {
+      props: {
+        members,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        members: [],
+      },
+    };
+  }
 }
 
 export default About;

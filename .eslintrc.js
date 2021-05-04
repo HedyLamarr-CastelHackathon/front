@@ -25,6 +25,7 @@ module.exports = {
           ['lib', './lib'],
           ['components', './components'],
           ['styles', './styles'],
+          ['lib', './lib'],
         ],
         extensions: ['.js', '.jsx', '.css', '.scss'],
       },
