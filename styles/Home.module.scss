@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .header {
   width: 100%;
   display: flex;
@@ -7,7 +9,6 @@
   align-items: center;
 
   margin: var(--marge-medium) 0;
-  padding: 0 var(--marge-small);
 }
 
 .map {
@@ -16,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #31572c;
+  background-color: $green;
 }
 
 .button {
@@ -26,7 +27,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background-color: #eee;
-  border: 1px solid green;
 }
