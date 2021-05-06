@@ -8,9 +8,15 @@ import Map from 'components/map';
 const Home = () => {
   const [garbageList, setGarbageList] = useState(null);
 
+  const stringToArray = (string) =>
+    string
+      .substring(1, string.length - 1)
+      .split(',')
+      .map(parseFloat);
+
   const getGarbageGeo = async (garbage) => {
     const geo = await get(garbage.geo);
-    return { ...garbage, geo };
+    return { ...garbage, geo: { ...geo, localisation: stringToArray(geo.localisation) } };
   };
 
   useEffect(async () => {

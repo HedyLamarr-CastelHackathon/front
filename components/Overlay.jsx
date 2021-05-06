@@ -26,11 +26,15 @@ const Overlay = () => {
     leave: { bottom: '-100%' },
   });
 
+  const onClick = () => {
+    dispatch({ type: 'hide' });
+  };
+
   return (
     <>
       <Dimmer visible={state.length > 0} />
       {transitions((props, { component: Component, key, props: componentProps }) => (
-        <animated.section key={key} style={props} className={styles.section}>
+        <animated.section key={key} style={props} className={styles.section} onClick={onClick}>
           <Component {...componentProps} />
         </animated.section>
       ))}
