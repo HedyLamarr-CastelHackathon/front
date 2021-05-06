@@ -4,15 +4,15 @@ import { get } from 'lib/api';
 
 import Head from 'next/head';
 import Map from 'components/map';
-
 import styles from 'styles/Home.module.css';
+import FilterCheckbox from '../components/FilterCheckbox';
 
 const LOC_OPTIONS = {
   enableHighAccuracy: true,
   timeout: 5000,
 };
 
-const Home = ({ garbages }) => {
+const Home = ({ garbageList }) => {
   const [position, setPosition] = useState([null, null]);
 
   // eslint-disable-next-line consistent-return
@@ -56,10 +56,10 @@ const Home = ({ garbages }) => {
             <option value="200 rue Machin" />
           </datalist>
         </div>
-        <div>
-          <input type="checkbox" name="" id="" />
-          <input type="checkbox" name="" id="" />
-          <input type="checkbox" name="" id="" />
+        <div className={styles['filter-nav']}>
+          <FilterCheckbox checked color="green" />
+          <FilterCheckbox color="yellow" />
+          <FilterCheckbox color="black" />
         </div>
       </header>
 

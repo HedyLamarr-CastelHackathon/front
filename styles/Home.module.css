@@ -31,3 +31,46 @@
   background-color: #eee;
   border: 1px solid green;
 }
+
+.filter{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  margin: var(--marge-small);
+  border: 2px solid black;
+  border-radius: 4px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.filter input {
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.checkmark{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 4px;
+  pointer-events: none;
+}
+
+.filter:not(:hover) input ~ .checkmark {
+  color: #DDDDDD;
+}
+
+.filter input:checked ~ .checkmark {
+  color: #FFFFFF;
+}
