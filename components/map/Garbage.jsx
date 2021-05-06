@@ -29,7 +29,7 @@ const Garbage = ({ garbage, zoom }) => {
     click: onClick,
   };
 
-  return <Marker position={garbage.localisation} icon={icon} eventHandlers={eventHandlers} />;
+  return <Marker position={garbage.geo.localisation} icon={icon} eventHandlers={eventHandlers} />;
 };
 
 export default Garbage;

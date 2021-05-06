@@ -1,18 +1,54 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import MapLoader from 'components/map/MapLoader';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from 'styles/Map.module.css';
+import L from 'leaflet';
 import Garbage from './Garbage';
 
 const Map = ({ garbageList }) => {
+  if (!garbageList) {
+    return <MapLoader />;
+  }
+
   const [map, setMap] = useState(null);
-  const [zoom, setZoom] = useState(10);
+  const [zoom, setZoom] = useState(null);
+  const [bounds, setBounds] = useState(null);
+
+  const reduceCorners = (acc, loc) => {
+    const newAcc = {
+      low: {
+        x: loc[0] < acc.low.x || !acc.low.x ? loc[0] : acc.low.x,
+        y: loc[1] < acc.low.y || !acc.low.y ? loc[1] : acc.low.y,
+      },
+      high: {
+        x: loc[0] > acc.high.x || !acc.high.x ? loc[0] : acc.high.x,
+        y: loc[1] > acc.high.x || !acc.high.y ? loc[1] : acc.high.y,
+      },
+    };
+    return newAcc;
+  };
+
+  useEffect(() => {
+    if (garbageList) {
+      const corners = garbageList.map((garbage) => garbage.geo.localisation).reduce(reduceCorners, { high: { x: null, y: null }, low: { x: null, y: null } });
+      setBounds(
+        new L.LatLngBounds([
+          [corners.low.x, corners.low.y],
+          [corners.high.x, corners.high.y],
+        ])
+      );
+    }
+  }, [garbageList]);
 
   useEffect(() => {
     if (map) {
       map.on('zoomend', () => {
         setZoom(map.getZoom());
       });
+      if (bounds) {
+        map.fitBounds(bounds, { padding: [50, 50] });
+      }
     }
   }, [map]);
 
@@ -31,10 +67,10 @@ const Map = ({ garbageList }) => {
           crossOrigin=""
         />
       </Head>
-      <MapContainer className={styles.container} center={[47.7367706331, 7.30612428404]} zoom={zoom} whenCreated={setMap}>
+      <MapContainer className={styles.container} zoom={zoom} whenCreated={setMap}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {garbageList.map((garbage) => (
-          <Garbage garbage={garbage} zoom={zoom} />
+          <Garbage key={garbage.id} garbage={garbage} zoom={zoom} />
         ))}
       </MapContainer>
     </>

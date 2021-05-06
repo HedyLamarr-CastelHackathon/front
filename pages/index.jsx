@@ -12,11 +12,32 @@ const LOC_OPTIONS = {
   timeout: 5000,
 };
 
-const Home = ({ garbageList }) => {
+const Home = () => {
   const [position, setPosition] = useState([null, null]);
+  const [garbageList, setGarbageList] = useState(null);
+
+  const stringToArray = (string) =>
+    string
+      .substring(1, string.length - 1)
+      .split(',')
+      .map(parseFloat);
+
+  const getGarbageGeo = async (garbage) => {
+    const geo = await get(garbage.geo);
+    return { ...garbage, geo: { ...geo, localisation: stringToArray(geo.localisation) } };
+  };
 
   // eslint-disable-next-line consistent-return
-  useEffect(() => {
+  useEffect(async () => {
+    try {
+      const res = await get('/garbages');
+      const garbageListWithoutGeo = res['hydra:member'];
+      const garbageListWithGeo = await Promise.all(garbageListWithoutGeo.map(getGarbageGeo));
+      setGarbageList(garbageListWithGeo);
+    } catch (error) {
+      setGarbageList([]);
+    }
+
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         // eslint-disable-next-line no-use-before-define
@@ -69,25 +90,5 @@ const Home = ({ garbageList }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  try {
-    // const res = await get('/');
-    // const members = res['hydra:member'];
-    const garbageList = [{ localisation: [47.7367706331, 7.30612428404] }];
-    return {
-      props: {
-        garbageList,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {
-        garbageList: [],
-      },
-    };
-  }
-}
 
 export default Home;
