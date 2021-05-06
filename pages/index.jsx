@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import Head from 'next/head';
 import layoutStyle from 'styles/Layout.module.css';
+import Map from 'components/map';
 
-const Home = () => (
+const Home = ({ garbageList }) => (
   <>
     <Head>
       <title>Hedy Lamarr</title>
@@ -31,7 +32,9 @@ const Home = () => (
       </div>
     </header>
 
-    <div className={layoutStyle.main_map}>MAP</div>
+    <div className={layoutStyle.main_map}>
+      <Map garbageList={garbageList} />
+    </div>
 
     <div className={layoutStyle.main_btn}>
       {/* eslint-disable-next-line react/button-has-type */}
@@ -39,5 +42,25 @@ const Home = () => (
     </div>
   </>
 );
+
+export async function getServerSideProps() {
+  try {
+    // const res = await get('/');
+    // const members = res['hydra:member'];
+    const garbageList = [{ localisation: [47.7367706331, 7.30612428404] }];
+    return {
+      props: {
+        garbageList,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        garbageList: [],
+      },
+    };
+  }
+}
 
 export default Home;
