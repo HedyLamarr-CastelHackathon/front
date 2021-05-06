@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from 'styles/Map.module.css';
+import Garbage from './Garbage';
 
-const Map = () => (
+const Map = ({ garbageList }) => (
   <>
     <Head>
       <link
@@ -19,6 +20,9 @@ const Map = () => (
     </Head>
     <MapContainer className={styles.container} center={[0, 0]} zoom={10}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      {garbageList.map((garbage) => (
+        <Garbage garbage={garbage} />
+      ))}
     </MapContainer>
   </>
 );
