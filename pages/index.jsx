@@ -66,7 +66,7 @@ const Home = () => {
       </Head>
 
       <header className={styles.header}>
-        <div className="search">
+        <div className={styles.search}>
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="search" hidden>
             Search the adress:
@@ -77,10 +77,15 @@ const Home = () => {
             <option value="200 rue Machin" />
           </datalist>
         </div>
-        <div className={styles['filter-nav']}>
-          <FilterCheckbox checked color="green" />
-          <FilterCheckbox color="yellow" />
-          <FilterCheckbox color="black" />
+        <div className={styles.nav}>
+          <div className={styles['filter-container']}>
+            <FilterCheckbox checked color="#2AE51A" />
+            <FilterCheckbox checked color="#ECF10E" />
+            <FilterCheckbox checked color="#111111" />
+          </div>
+          <div className={styles['action-container']}>
+            <div className={styles.btn}>Signaler</div>
+          </div>
         </div>
       </header>
 

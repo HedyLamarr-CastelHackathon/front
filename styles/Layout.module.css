@@ -3,7 +3,6 @@
   max-height: 100vh;
   overflow-y: hidden;
   overflow-x: visible;
-  padding: 0 var(--marge-small);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
