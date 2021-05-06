@@ -8,13 +8,17 @@ import Map from 'components/map';
 const Home = () => {
   const [garbageList, setGarbageList] = useState(null);
 
+  const getGarbageGeo = async (garbage) => {
+    const geo = await get(garbage.geo);
+    return { ...garbage, geo };
+  };
+
   useEffect(async () => {
     try {
-      // const res = await get('/garbages');
-      // const garbageList = res['hydra:member'];
-      const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
-      await wait(1000);
-      setGarbageList([{ geo: [47.7367706331, 7.30612428404] }]);
+      const res = await get('/garbages');
+      const garbageListWithoutGeo = res['hydra:member'];
+      const garbageListWithGeo = await Promise.all(garbageListWithoutGeo.map(getGarbageGeo));
+      setGarbageList(garbageListWithGeo);
     } catch (error) {
       setGarbageList([]);
     }
