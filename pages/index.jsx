@@ -3,8 +3,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { get } from 'lib/api';
 
 import Head from 'next/head';
+import Map from 'components/map';
 
-import layoutStyle from 'styles/Layout.module.css';
+import styles from 'styles/Home.module.css';
 
 const LOC_OPTIONS = {
   enableHighAccuracy: true,
@@ -43,7 +44,7 @@ const Home = ({ garbages }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className={layoutStyle.main_header}>
+      <header className={styles.header}>
         <div className="search">
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="search" hidden>
@@ -62,11 +63,8 @@ const Home = ({ garbages }) => {
         </div>
       </header>
 
-      <div className={layoutStyle.main_map}>MAP</div>
-
-      <div className={layoutStyle.main_btn}>
-        {/* eslint-disable-next-line react/button-has-type */}
-        <button>Signaler</button>
+      <div className={styles.map}>
+        <Map garbageList={garbageList} />
       </div>
     </>
   );
@@ -74,18 +72,19 @@ const Home = ({ garbages }) => {
 
 export async function getServerSideProps() {
   try {
-    const res = await get('/garbages');
-    const garbages = res['hydra:garbage'];
+    // const res = await get('/');
+    // const members = res['hydra:member'];
+    const garbageList = [{ localisation: [47.7367706331, 7.30612428404] }];
     return {
       props: {
-        garbages,
+        garbageList,
       },
     };
   } catch (error) {
     console.log(error);
     return {
       props: {
-        garbages: [],
+        garbageList: [],
       },
     };
   }

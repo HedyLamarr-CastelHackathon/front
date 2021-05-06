@@ -4,15 +4,20 @@ import { library, config } from '@fortawesome/fontawesome-svg-core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Layout from 'components/Layout';
+import { OverlayContentProvider } from 'contexts/overlay-context';
+import Overlay from 'components/Overlay';
 
 config.autoAddCss = false;
 library.add(faGithub);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <OverlayContentProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      <Overlay />
+    </OverlayContentProvider>
   );
 }
 

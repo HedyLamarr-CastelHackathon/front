@@ -27,6 +27,7 @@ module.exports = {
           ['styles', './styles'],
           ['lib', './lib'],
           ['assets', './assets'],
+          ['contexts', './contexts'],
         ],
         extensions: ['.js', '.jsx', '.css', '.scss', '.svg'],
       },
