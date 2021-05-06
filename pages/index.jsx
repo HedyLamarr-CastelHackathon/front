@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import Head from 'next/head';
-import Link from 'next/link';
-import styles from 'styles/Grid.module.css';
+import layoutStyle from 'styles/Layout.module.css';
 
 const Home = () => (
   <>
@@ -9,22 +8,34 @@ const Home = () => (
       <title>Hedy Lamarr</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <h1 className="title">Welcome!</h1>
 
-    <p className="description">#CastelHackathon</p>
+    <header className={layoutStyle.main_header}>
+      <div className="search">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="search" hidden>
+          Search the adress:
+        </label>
+        <input type="search" id="search" name="q" list="search-datalist" placeholder="Recherche" />
+        <datalist id="search-datalist">
+          <option value="Internet Explorer" />
+          <option value="Firefox" />
+          <option value="Chrome" />
+          <option value="Opera" />
+          <option value="Safari" />
+        </datalist>
+      </div>
+      <div>
+        <input type="checkbox" name="" id="" />
+        <input type="checkbox" name="" id="" />
+        <input type="checkbox" name="" id="" />
+      </div>
+    </header>
 
-    <div className={styles.grid}>
-      <a href="https://github.com/HedyLamarr-CastelHackathon" className={styles.card}>
-        <h3>GitHub &rarr;</h3>
-        <p>Front and back end repositories for the project.</p>
-      </a>
+    <div className={layoutStyle.main_map}>MAP</div>
 
-      <Link href="/about">
-        <a className={styles.card}>
-          <h3>About &rarr;</h3>
-          <p>Meet the members of the team!</p>
-        </a>
-      </Link>
+    <div className={layoutStyle.main_btn}>
+      {/* eslint-disable-next-line react/button-has-type */}
+      <button>Signaler</button>
     </div>
   </>
 );

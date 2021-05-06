@@ -1,3 +1,8 @@
+:root{
+  --marge-medium: 2rem;
+  --marge-small: 1rem;
+}
+
 html,
 body {
   padding: 0;
