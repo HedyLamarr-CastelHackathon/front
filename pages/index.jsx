@@ -4,8 +4,8 @@ import { get } from 'lib/api';
 
 import Head from 'next/head';
 import Map from 'components/map';
-import styles from 'styles/Home.module.css';
-import FilterCheckbox from '../components/FilterCheckbox';
+import styles from 'styles/Home.module.scss';
+import FilterCheckbox from 'components/FilterCheckbox';
 
 const LOC_OPTIONS = {
   enableHighAccuracy: true,
