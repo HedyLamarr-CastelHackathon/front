@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import Head from 'next/head';
-import layoutStyle from 'styles/Layout.module.css';
+import styles from 'styles/Home.module.css';
 import Map from 'components/map';
 
 const Home = ({ garbageList }) => (
@@ -10,7 +10,7 @@ const Home = ({ garbageList }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <header className={layoutStyle.main_header}>
+    <header className={styles.header}>
       <div className="search">
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="search" hidden>
@@ -32,13 +32,8 @@ const Home = ({ garbageList }) => (
       </div>
     </header>
 
-    <div className={layoutStyle.main_map}>
+    <div className={styles.map}>
       <Map garbageList={garbageList} />
-    </div>
-
-    <div className={layoutStyle.main_btn}>
-      {/* eslint-disable-next-line react/button-has-type */}
-      <button>Signaler</button>
     </div>
   </>
 );
