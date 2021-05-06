@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import MapLoader from 'components/map/MapLoader';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from 'styles/Map.module.css';
 import Garbage from './Garbage';
 
 const Map = ({ garbageList }) => {
+  if (!garbageList) {
+    return <MapLoader />;
+  }
+
   const [map, setMap] = useState(null);
   const [zoom, setZoom] = useState(10);
 
