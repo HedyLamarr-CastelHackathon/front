@@ -1,4 +1,4 @@
-import styles from 'styles/GarbageDetail.module.css';
+import styles from 'styles/GarbageDetail.module.scss';
 
 const GarbageDetail = ({ garbage }) => (
   <section className={styles.detail}>
