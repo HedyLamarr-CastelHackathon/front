@@ -6,3 +6,9 @@
   transform: translateX(-50%);
   z-index: 3;
 }
+
+@media (max-width: 600px) {
+  .section {
+    padding: 1rem;
+  }
+}

@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .detail {
   background-color: white;
   width: 50vw;
@@ -26,4 +28,16 @@
   border-radius: 1rem;
   font-size: 1.5rem;
   color: white;
+}
+
+@media (max-width: $breakpoint-sm) {
+  .detail {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
+
+  .button {
+    width: 100%;
+  }
 }
