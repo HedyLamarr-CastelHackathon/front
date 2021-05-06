@@ -1,11 +1,17 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { post } from 'lib/api';
 import styles from 'styles/GarbageDetail.module.scss';
 
 const GarbageDetail = ({ garbage }) => {
   const sendReport = () => {};
 
+  const onClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
-    <section className={styles.detail}>
+    <section className={styles.detail} onClick={onClick}>
       <h1 className={styles.title}>Signaler un problème</h1>
       <p className={styles.description}>Rendons notre ville plus propre ensemble !</p>
       <form className={styles.form}>
