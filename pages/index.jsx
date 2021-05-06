@@ -14,17 +14,13 @@ const Home = () => {
       .split(',')
       .map(parseFloat);
 
-  const getGarbageGeo = async (garbage) => {
-    const geo = await get(garbage.geo);
-    return { ...garbage, geo: { ...geo, localisation: stringToArray(geo.localisation) } };
-  };
+  const getGarbageGeo = (garbage) => ({ ...garbage, geo: { ...garbage.geo, localisation: stringToArray(garbage.geo.localisation) } });
 
   useEffect(async () => {
     try {
       const res = await get('/garbages');
-      const garbageListWithoutGeo = res['hydra:member'];
-      const garbageListWithGeo = await Promise.all(garbageListWithoutGeo.map(getGarbageGeo));
-      setGarbageList(garbageListWithGeo);
+      const newGarbageList = res['hydra:member'].map(getGarbageGeo);
+      setGarbageList(newGarbageList);
     } catch (error) {
       setGarbageList([]);
     }

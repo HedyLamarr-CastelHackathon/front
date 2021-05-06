@@ -5,6 +5,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from 'styles/Map.module.scss';
 import L from 'leaflet';
 import GarbageMarker from './GarbageMarker';
+import ClusterMarker from './ClusterMarker';
 
 const Map = ({ garbageList }) => {
   if (!garbageList) {
@@ -14,6 +15,8 @@ const Map = ({ garbageList }) => {
   const [map, setMap] = useState(null);
   const [zoom, setZoom] = useState(null);
   const [bounds, setBounds] = useState(null);
+  const [clusters, setClusters] = useState([]);
+  const [points, setPoints] = useState([]);
 
   const reduceCorners = (acc, loc) => {
     const newAcc = {
@@ -52,6 +55,44 @@ const Map = ({ garbageList }) => {
     }
   }, [map]);
 
+  const getDistance = (a, b) => Math.sqrt((a.geo.localisation[0] - b.geo.localisation[0]) ** 2 + (a.geo.localisation[1] - b.geo.localisation[1]) ** 2);
+
+  useEffect(() => {
+    const dist = 0.032 - 0.0021 * zoom;
+    const newClusters = [];
+    const newPoints = [];
+    let remainingPoints = [...garbageList];
+    garbageList.forEach((a) => {
+      if (remainingPoints.find((point) => point.id === a.id)) {
+        const cluster = [a];
+        remainingPoints.forEach((b) => {
+          if (a.id !== b.id && getDistance(a, b) < dist) {
+            cluster.push(b);
+          }
+        });
+        remainingPoints = remainingPoints.filter((point) => cluster.findIndex((clusterPoint) => point.id === clusterPoint.id) === -1);
+        if (cluster.length === 1) {
+          newPoints.push(a);
+        } else {
+          newClusters.push(cluster);
+        }
+      }
+    });
+    setClusters(newClusters);
+    setPoints(newPoints);
+  }, [garbageList, zoom]);
+
+  const renderMarkers = () => (
+    <>
+      {clusters.map((cluster) => (
+        <ClusterMarker key={cluster[0].id} points={cluster} />
+      ))}
+      {points.map((point) => (
+        <GarbageMarker key={point.id} garbage={point} />
+      ))}
+    </>
+  );
+
   return (
     <>
       <Head>
@@ -69,9 +110,7 @@ const Map = ({ garbageList }) => {
       </Head>
       <MapContainer className={styles.container} zoom={zoom} whenCreated={setMap}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {garbageList.map((garbage) => (
-          <GarbageMarker key={garbage.id} garbage={garbage} zoom={zoom} />
-        ))}
+        {renderMarkers()}
       </MapContainer>
     </>
   );

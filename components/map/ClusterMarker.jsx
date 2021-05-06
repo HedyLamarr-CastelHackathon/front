@@ -1,15 +1,13 @@
 /* eslint-disable global-require */
 import { Marker } from 'react-leaflet';
 import L from 'leaflet';
-import { useOverlayContent } from 'contexts/overlay-context';
-import GarbageDetail from 'components/GarbageDetail';
 
-const GarbageMarker = ({ garbage }) => {
+const ClusterMarker = ({ points }) => {
   const scale = 1;
   const baseIconSize = 32;
   const scaledIconSize = baseIconSize * scale;
   const icon = L.icon({
-    iconUrl: require('assets/trash-alt-solid.svg'),
+    iconUrl: require('assets/trash-alt-solid-green.svg'),
     iconSize: [scaledIconSize, scaledIconSize],
     iconAnchor: [scaledIconSize / 2, scaledIconSize],
     popupAnchor: null,
@@ -18,17 +16,21 @@ const GarbageMarker = ({ garbage }) => {
     shadowAnchor: null,
   });
 
-  const { dispatch } = useOverlayContent();
-
   const onClick = () => {
-    dispatch({ type: 'show', payload: { component: GarbageDetail, props: { garbage } } });
+    console.log(points);
   };
 
   const eventHandlers = {
     click: onClick,
   };
 
-  return <Marker position={garbage.geo.localisation} icon={icon} eventHandlers={eventHandlers} />;
+  return (
+    <>
+      <Marker position={points[0].geo.localisation} icon={icon} eventHandlers={eventHandlers}>
+        <p>{points.length}</p>
+      </Marker>
+    </>
+  );
 };
 
-export default GarbageMarker;
+export default ClusterMarker;
