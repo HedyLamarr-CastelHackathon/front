@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import MapLoader from 'components/map/MapLoader';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import styles from 'styles/Map.module.css';
+import styles from 'styles/Map.module.scss';
 import L from 'leaflet';
 import Garbage from './Garbage';
 
