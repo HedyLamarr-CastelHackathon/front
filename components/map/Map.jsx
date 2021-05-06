@@ -4,7 +4,7 @@ import MapLoader from 'components/map/MapLoader';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from 'styles/Map.module.scss';
 import L from 'leaflet';
-import Garbage from './Garbage';
+import GarbageMarker from './GarbageMarker';
 
 const Map = ({ garbageList }) => {
   if (!garbageList) {
@@ -70,7 +70,7 @@ const Map = ({ garbageList }) => {
       <MapContainer className={styles.container} zoom={zoom} whenCreated={setMap}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {garbageList.map((garbage) => (
-          <Garbage key={garbage.id} garbage={garbage} zoom={zoom} />
+          <GarbageMarker key={garbage.id} garbage={garbage} zoom={zoom} />
         ))}
       </MapContainer>
     </>
