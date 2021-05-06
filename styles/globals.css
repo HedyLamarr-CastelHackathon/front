@@ -1,4 +1,4 @@
-:root{
+:root {
   --marge-medium: 2rem;
   --marge-small: 1rem;
 }
@@ -44,4 +44,8 @@ a {
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+.leaflet-tile {
+  z-index: 1;
 }

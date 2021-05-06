@@ -31,7 +31,7 @@ const Map = ({ garbageList }) => {
           crossOrigin=""
         />
       </Head>
-      <MapContainer className={styles.container} center={[0, 0]} zoom={zoom} whenCreated={setMap}>
+      <MapContainer className={styles.container} center={[47.7367706331, 7.30612428404]} zoom={zoom} whenCreated={setMap} scrollWheelZoom={false}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {garbageList.map((garbage) => (
           <Garbage garbage={garbage} zoom={zoom} />
