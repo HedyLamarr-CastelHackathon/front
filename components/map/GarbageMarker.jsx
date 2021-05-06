@@ -4,13 +4,13 @@ import L from 'leaflet';
 import { useOverlayContent } from 'contexts/overlay-context';
 import GarbageDetail from 'components/GarbageDetail';
 
-const Garbage = ({ garbage, zoom }) => {
+const Garbage = ({ garbage }) => {
   const maxZoom = 18;
-  const scale = zoom / maxZoom;
+  const scale = 1;
   const baseIconSize = 32;
   const scaledIconSize = baseIconSize * scale;
   const icon = L.icon({
-    iconUrl: require('assets/trash-alt-solid.svg'),
+    iconUrl: require('assets/trash-alt-solid-green.svg'),
     iconSize: [scaledIconSize, scaledIconSize],
     iconAnchor: [scaledIconSize / 2, scaledIconSize],
     popupAnchor: null,
