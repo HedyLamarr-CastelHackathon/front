@@ -15,6 +15,11 @@ const LOC_OPTIONS = {
 const Home = () => {
   const [position, setPosition] = useState([null, null]);
   const [garbageList, setGarbageList] = useState(null);
+  const [garbageTypes, setGarbageTypes] = useState([
+    { color: '#111111', code: 'C1', checked: true },
+    { color: '#ECF10E', code: 'C2', checked: true },
+    { color: '#2AE51A', code: 'C3', checked: false },
+  ]);
 
   const stringToArray = (string) =>
     string
@@ -26,14 +31,6 @@ const Home = () => {
 
   // eslint-disable-next-line consistent-return
   useEffect(async () => {
-    try {
-      const res = await get('/garbages');
-      const newGarbageList = res['hydra:member'].map(getGarbageGeo);
-      setGarbageList(newGarbageList);
-    } catch (error) {
-      setGarbageList([]);
-    }
-
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         // eslint-disable-next-line no-use-before-define
@@ -46,6 +43,14 @@ const Home = () => {
     } else {
       console.log('geolocation not disponible');
     }
+
+    try {
+      const res = await get('/garbages');
+      const newGarbageList = res['hydra:member'].map(getGarbageGeo);
+      setGarbageList(newGarbageList);
+    } catch (error) {
+      setGarbageList([]);
+    }
   }, []);
 
   const geolocate = useCallback((pos) => {
@@ -53,6 +58,10 @@ const Home = () => {
   });
 
   console.log('Position', position);
+  if (garbageList && garbageList[0]) {
+    console.log('Garbages', garbageList[0].type);
+    console.log('Garbages', garbageList);
+  }
 
   return (
     <>
@@ -75,9 +84,10 @@ const Home = () => {
         </div>
         <div className={styles.nav}>
           <div className={styles['filter-container']}>
-            <FilterCheckbox checked color="#2AE51A" />
-            <FilterCheckbox checked color="#ECF10E" />
-            <FilterCheckbox checked color="#111111" />
+            <p>filters:</p>
+            {garbageTypes.map((type, i) => (
+              <FilterCheckbox key={i} index={i} types={garbageTypes} setTypes={setGarbageTypes} />
+            ))}
           </div>
           <div className={styles['action-container']}>
             <div className={styles.btn}>Signaler</div>
@@ -86,7 +96,7 @@ const Home = () => {
       </header>
 
       <div className={styles.map}>
-        <Map garbageList={garbageList} />
+        <Map garbageList={garbageList} garbageTypes={garbageTypes} />
       </div>
     </>
   );

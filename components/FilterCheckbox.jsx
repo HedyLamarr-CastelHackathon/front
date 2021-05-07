@@ -1,11 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import styles from 'styles/Home.module.scss';
 
-const FilterCheckbox = ({ checked = false, color }) => {
-  const [check, setCheck] = useState(checked);
+const FilterCheckbox = ({ index, types, setTypes }) => {
+  const check = types[index].checked;
+  const { color } = types[index];
 
   const handleChange = useCallback((e) => {
-    setCheck(e.target.checked);
+    // eslint-disable-next-line no-param-reassign
+    types[index].checked = e.target.checked;
+    setTypes([...types]);
   });
 
   const style = { color, 'border-color': color, backgroundColor: check ? color : 'transparent' };
