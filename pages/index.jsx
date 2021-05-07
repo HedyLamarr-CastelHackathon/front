@@ -52,8 +52,6 @@ const Home = () => {
     setPosition([pos.coords.latitude, pos.coords.longitude]);
   });
 
-  console.log('Position', position);
-
   return (
     <>
       <Head>
@@ -86,7 +84,7 @@ const Home = () => {
       </header>
 
       <div className={styles.map}>
-        <Map garbageList={garbageList} />
+        <Map garbageList={garbageList} position={position} />
       </div>
     </>
   );

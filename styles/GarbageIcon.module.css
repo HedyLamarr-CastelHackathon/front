@@ -5,11 +5,11 @@
 
 .text {
   position: absolute;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   height: 100%;
   margin: 0;
-  top: 0.2rem;
+  top: 0.5rem;
   left: 0;
   right: 0;
   bottom: 0;
