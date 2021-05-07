@@ -8,7 +8,7 @@ import GarbageIcon from './GarbageIcon';
 
 const GarbageMarker = ({ garbage, color }) => {
   const scale = 1;
-  const baseIconSize = 32;
+  const baseIconSize = 45;
   const scaledIconSize = baseIconSize * scale;
   const icon = L.divIcon({
     iconSize: [scaledIconSize, scaledIconSize],

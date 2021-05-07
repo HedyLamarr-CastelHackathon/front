@@ -20,8 +20,8 @@ const Home = () => {
   const [garbageList, setGarbageList] = useState(null);
   const [garbageTypes, setGarbageTypes] = useState([
     { color: '#111111', code: 'C1', checked: true },
-    { color: '#ECF10E', code: 'C2', checked: true },
-    { color: '#2AE51A', code: 'C3', checked: true },
+    { color: '#ffea00', code: 'C2', checked: true },
+    { color: '#73a942', code: 'C3', checked: true },
   ]);
   const { dispatch } = useOverlayContent();
 
@@ -50,7 +50,7 @@ const Home = () => {
 
   // eslint-disable-next-line consistent-return
   useEffect(async () => {
-    triggerGeolocation();
+    // triggerGeolocation();
     try {
       const res = await get('/garbages');
       const newGarbageList = res['hydra:member'].map(getGarbageGeo);
