@@ -38,6 +38,26 @@
   color: white;
 }
 
+.cancel {
+  background-color: #e63946;
+  border: #e63946;
+  color: white;
+  margin-right: 1rem;
+  flex-grow: 1;
+}
+
+.checked {
+  background-color: $green;
+  font-weight: bold;
+  color: white;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 70%;
+}
+
 .title {
   font-size: 2.5rem;
   font-weight: 300;
@@ -61,5 +81,14 @@
 
   .button {
     width: 100%;
+  }
+
+  .bottom {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cancel {
+    margin-right: 0;
   }
 }

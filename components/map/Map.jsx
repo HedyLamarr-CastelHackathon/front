@@ -7,7 +7,7 @@ import L from 'leaflet';
 import GarbageMarker from './GarbageMarker';
 import ClusterMarker from './ClusterMarker';
 
-const Map = ({ garbageList, garbageTypes }) => {
+const Map = ({ garbageList, position, garbageTypes }) => {
   if (!garbageList) {
     return <MapLoader />;
   }
@@ -51,6 +51,9 @@ const Map = ({ garbageList, garbageTypes }) => {
       });
       if (bounds) {
         map.fitBounds(bounds, { padding: [50, 50] });
+      }
+      if (position && position[0] !== null && position[1] !== null) {
+        map.flyTo(new L.LatLng(position[0], position[1]), 15);
       }
     }
   }, [map]);
