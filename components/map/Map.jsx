@@ -17,6 +17,7 @@ const Map = ({ garbageList, position, garbageTypes }) => {
   const [bounds, setBounds] = useState(null);
   const [clusters, setClusters] = useState([]);
   const [points, setPoints] = useState([]);
+  const [hasMovedToLocation, setHasMovedToLocation] = useState(false);
 
   const reduceCorners = (acc, loc) => {
     const newAcc = {
@@ -52,8 +53,9 @@ const Map = ({ garbageList, position, garbageTypes }) => {
       if (bounds) {
         map.fitBounds(bounds, { padding: [50, 50] });
       }
-      if (position && position[0] !== null && position[1] !== null) {
+      if (position && position[0] !== null && position[1] !== null && !hasMovedToLocation) {
         map.flyTo(new L.LatLng(position[0], position[1]), 15);
+        setHasMovedToLocation(true);
       }
     }
   }, [map]);

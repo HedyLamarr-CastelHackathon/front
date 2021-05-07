@@ -11,7 +11,7 @@ const FilterCheckbox = ({ index, types, setTypes }) => {
     setTypes([...types]);
   });
 
-  const style = { color, 'border-color': color, backgroundColor: check ? color : 'transparent' };
+  const style = { color, borderColor: color, backgroundColor: check ? color : 'transparent' };
 
   return (
     <div className={styles.filter} style={style}>
