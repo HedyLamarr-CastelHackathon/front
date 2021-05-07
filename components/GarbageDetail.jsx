@@ -1,13 +1,21 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { post } from 'lib/api';
 import styles from 'styles/GarbageDetail.module.scss';
+import { useOverlayContent } from 'contexts/overlay-context';
 
 const GarbageDetail = ({ garbage }) => {
   const sendReport = () => {};
 
   const onClick = (event) => {
     event.stopPropagation();
+  };
+
+  const { dispatch } = useOverlayContent();
+
+  const onCancel = () => {
+    dispatch({ type: 'hide' });
   };
 
   return (
@@ -24,9 +32,14 @@ const GarbageDetail = ({ garbage }) => {
         <button type="button" className={styles.button} onClick={sendReport}>
           La poubelle est trop pleine
         </button>
-        <button type="submit" className={`${styles.button} ${styles.submit}`} onClick={sendReport}>
-          Signaler les problèmes
-        </button>
+        <div className={styles.bottom}>
+          <button type="submit" className={`${styles.button} ${styles.submit}`} onClick={sendReport}>
+            Signaler les problèmes
+          </button>
+          <button type="button" onClick={onCancel} className={`${styles.button} ${styles.cancel}`}>
+            Annuler
+          </button>
+        </div>
       </form>
     </section>
   );

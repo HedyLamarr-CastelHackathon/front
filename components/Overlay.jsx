@@ -21,9 +21,9 @@ const Overlay = () => {
   }, []);
 
   const transitions = useTransition(state, {
-    from: { position: 'absolute', bottom: '-100%' },
-    enter: { bottom: '0%' },
-    leave: { bottom: '-100%' },
+    from: { position: 'absolute', top: '100%' },
+    enter: { top: '0%' },
+    leave: { top: '100%' },
   });
 
   const onClick = () => {
