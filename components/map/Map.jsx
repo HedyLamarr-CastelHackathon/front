@@ -7,7 +7,7 @@ import L from 'leaflet';
 import GarbageMarker from './GarbageMarker';
 import ClusterMarker from './ClusterMarker';
 
-const Map = ({ garbageList, position }) => {
+const Map = ({ garbageList, position, garbageTypes }) => {
   if (!garbageList) {
     return <MapLoader />;
   }
@@ -87,12 +87,22 @@ const Map = ({ garbageList, position }) => {
 
   const renderMarkers = () => (
     <>
-      {clusters.map((cluster) => (
-        <ClusterMarker key={cluster[0].id} points={cluster} />
-      ))}
-      {points.map((point) => (
-        <GarbageMarker key={point.id} garbage={point} />
-      ))}
+      {clusters.map((cluster) => {
+        cluster = cluster.filter((point) => garbageTypes.find((el) => el.code === point.type.code && el.checked));
+
+        if (cluster.length > 0) {
+          return <ClusterMarker key={cluster[0].id} points={cluster} />;
+        }
+        return null;
+      })}
+      {points.map((point) => {
+        const type = garbageTypes.find((el) => el.code === point.type.code && el.checked);
+
+        if (type) {
+          return <GarbageMarker key={point.id} garbage={point} />;
+        }
+        return null;
+      })}
     </>
   );
 
