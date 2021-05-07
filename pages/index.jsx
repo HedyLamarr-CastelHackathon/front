@@ -57,12 +57,6 @@ const Home = () => {
     setPosition([pos.coords.latitude, pos.coords.longitude]);
   });
 
-  console.log('Position', position);
-  if (garbageList && garbageList[0]) {
-    console.log('Garbages', garbageList[0].type);
-    console.log('Garbages', garbageList);
-  }
-
   return (
     <>
       <Head>
@@ -96,7 +90,7 @@ const Home = () => {
       </header>
 
       <div className={styles.map}>
-        <Map garbageList={garbageList} garbageTypes={garbageTypes} />
+        <Map garbageList={garbageList} position={position} garbageTypes={garbageTypes} />
       </div>
     </>
   );
