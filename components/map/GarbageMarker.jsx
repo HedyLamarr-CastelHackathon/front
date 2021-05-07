@@ -1,21 +1,23 @@
 /* eslint-disable global-require */
+import { renderToStaticMarkup } from 'react-dom/server';
 import { Marker } from 'react-leaflet';
 import L from 'leaflet';
 import { useOverlayContent } from 'contexts/overlay-context';
 import GarbageDetail from 'components/GarbageDetail';
+import GarbageIcon from './GarbageIcon';
 
-const GarbageMarker = ({ garbage }) => {
+const GarbageMarker = ({ garbage, color }) => {
   const scale = 1;
   const baseIconSize = 32;
   const scaledIconSize = baseIconSize * scale;
-  const icon = L.icon({
-    iconUrl: require('assets/trash-alt-solid.svg'),
+  const icon = L.divIcon({
     iconSize: [scaledIconSize, scaledIconSize],
     iconAnchor: [scaledIconSize / 2, scaledIconSize],
     popupAnchor: null,
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
+    html: renderToStaticMarkup(<GarbageIcon color={color} />),
   });
 
   const { dispatch } = useOverlayContent();
