@@ -63,7 +63,7 @@ const Map = ({ garbageList, position, garbageTypes }) => {
   const getDistance = (a, b) => Math.sqrt((a.geo.localisation[0] - b.geo.localisation[0]) ** 2 + (a.geo.localisation[1] - b.geo.localisation[1]) ** 2);
 
   useEffect(() => {
-    const dist = 0.032 - 0.0021 * zoom;
+    const dist = zoom < 12 ? 10 : 0.035 - 0.0021 * zoom;
     const newClusters = [];
     const newPoints = [];
     let remainingPoints = [...garbageList];

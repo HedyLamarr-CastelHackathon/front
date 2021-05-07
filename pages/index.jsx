@@ -50,7 +50,7 @@ const Home = () => {
 
   // eslint-disable-next-line consistent-return
   useEffect(async () => {
-    triggerGeolocation();
+    // triggerGeolocation();
     try {
       const res = await get('/garbages');
       const newGarbageList = res['hydra:member'].map(getGarbageGeo);
