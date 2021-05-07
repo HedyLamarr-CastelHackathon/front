@@ -8,6 +8,7 @@ import styles from 'styles/Home.module.scss';
 import FilterCheckbox from 'components/FilterCheckbox';
 import { useOverlayContent } from 'contexts/overlay-context';
 import Wish from 'components/Wish';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const LOC_OPTIONS = {
   enableHighAccuracy: true,
@@ -87,7 +88,7 @@ const Home = () => {
           </datalist>
         </div>
         <button type="button" className={styles.btn} onClick={() => triggerGeolocation()}>
-          Se localiser
+          <FontAwesomeIcon icon="map-marker-alt" size="lg" />
         </button>
         <div className={styles.nav}>
           <div className={styles['filter-container']}>
@@ -98,7 +99,8 @@ const Home = () => {
           </div>
           <div className={styles['action-container']}>
             <button type="button" className={styles.btn} onClick={() => onClickWish()}>
-              Demande
+              <p style={{ marginRight: '0.5rem' }}>Demande</p>
+              <FontAwesomeIcon icon="comment" size="lg" />
             </button>
           </div>
         </div>
