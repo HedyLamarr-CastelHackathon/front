@@ -20,7 +20,7 @@ const Home = () => {
   const [garbageTypes, setGarbageTypes] = useState([
     { color: '#111111', code: 'C1', checked: true },
     { color: '#ECF10E', code: 'C2', checked: true },
-    { color: '#2AE51A', code: 'C3', checked: false },
+    { color: '#2AE51A', code: 'C3', checked: true },
   ]);
   const { dispatch } = useOverlayContent();
 
@@ -82,7 +82,6 @@ const Home = () => {
           </label>
           <input type="search" id="search" name="q" list="search-datalist" placeholder="Recherche" />
           <datalist id="search-datalist">
-            <option value="se localiser" />
             <option value="200 rue Machin" />
           </datalist>
         </div>
