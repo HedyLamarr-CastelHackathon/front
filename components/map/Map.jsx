@@ -96,7 +96,7 @@ const Map = ({ garbageList, garbageTypes }) => {
         const type = garbageTypes.find((el) => el.code === point.type.code && el.checked);
 
         if (type) {
-          return <GarbageMarker key={point.id} garbage={point} />;
+          return <GarbageMarker key={point.id} garbage={point} color={type.color} />;
         }
         return null;
       })}
@@ -118,7 +118,7 @@ const Map = ({ garbageList, garbageTypes }) => {
           crossOrigin=""
         />
       </Head>
-      <MapContainer className={styles.container} zoom={zoom} whenCreated={setMap}>
+      <MapContainer className={styles.container} whenCreated={setMap}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {renderMarkers()}
       </MapContainer>

@@ -18,7 +18,7 @@ const Home = () => {
   const [garbageTypes, setGarbageTypes] = useState([
     { color: '#111111', code: 'C1', checked: true },
     { color: '#ECF10E', code: 'C2', checked: true },
-    { color: '#2AE51A', code: 'C3', checked: false },
+    { color: '#2AE51A', code: 'C3', checked: true },
   ]);
 
   const stringToArray = (string) =>
@@ -58,10 +58,6 @@ const Home = () => {
   });
 
   console.log('Position', position);
-  if (garbageList && garbageList[0]) {
-    console.log('Garbages', garbageList[0].type);
-    console.log('Garbages', garbageList);
-  }
 
   return (
     <>
