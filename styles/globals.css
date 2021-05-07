@@ -55,3 +55,9 @@ a {
 .leaflet-tile {
   z-index: 1;
 }
+
+.leaflet-div-icon {
+  border: 0;
+  width: 3rem;
+  background-color: transparent;
+}

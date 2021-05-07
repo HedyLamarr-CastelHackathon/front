@@ -1,0 +1,17 @@
+.icon {
+  width: 64px;
+  height: 64px;
+}
+
+.text {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  height: 100%;
+  margin: 0;
+  top: 0.2rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
