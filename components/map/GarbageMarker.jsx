@@ -4,9 +4,8 @@ import L from 'leaflet';
 import { useOverlayContent } from 'contexts/overlay-context';
 import GarbageDetail from 'components/GarbageDetail';
 
-const Garbage = ({ garbage, zoom }) => {
-  const maxZoom = 18;
-  const scale = zoom / maxZoom;
+const GarbageMarker = ({ garbage }) => {
+  const scale = 1;
   const baseIconSize = 32;
   const scaledIconSize = baseIconSize * scale;
   const icon = L.icon({
@@ -32,4 +31,4 @@ const Garbage = ({ garbage, zoom }) => {
   return <Marker position={garbage.geo.localisation} icon={icon} eventHandlers={eventHandlers} />;
 };
 
-export default Garbage;
+export default GarbageMarker;
