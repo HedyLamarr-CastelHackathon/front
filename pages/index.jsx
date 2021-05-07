@@ -74,7 +74,6 @@ const Home = () => {
           </label>
           <input type="search" id="search" name="q" list="search-datalist" placeholder="Recherche" />
           <datalist id="search-datalist">
-            <option value="se localiser" />
             <option value="200 rue Machin" />
           </datalist>
         </div>
