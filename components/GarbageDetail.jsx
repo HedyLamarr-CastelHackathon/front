@@ -8,11 +8,20 @@ import { useOverlayContent } from 'contexts/overlay-context';
 import Popup from 'components/Popup';
 
 const GarbageDetail = ({ garbage }) => {
-  const [form, setForm] = useState({ isHere: true, isDamaged: false, isFull: false });
+  const initialForm = { isHere: true, isDamaged: false, isFull: false };
+  const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
+  const [touched, setTouched] = useState(false);
   const { dispatch } = useOverlayContent();
+
+  const isFormEmpty = () => JSON.stringify(form) === JSON.stringify(initialForm);
+
   const sendReport = async (event) => {
+    setTouched(true);
     event.preventDefault();
+    if (isFormEmpty()) {
+      return;
+    }
     try {
       setLoading(true);
       await post('/reports', { ...form, garbage: garbage.id });
@@ -31,6 +40,7 @@ const GarbageDetail = ({ garbage }) => {
   };
 
   const toggle = (key) => () => {
+    setTouched(true);
     const newForm = { ...form };
     newForm[key] = !newForm[key];
     setForm(newForm);
@@ -40,6 +50,7 @@ const GarbageDetail = ({ garbage }) => {
     <section className={styles.detail} onClick={onClick}>
       <h1 className={styles.title}>Signaler un problème</h1>
       <p className={styles.description}>Rendons notre ville plus propre ensemble !</p>
+      {touched && isFormEmpty() ? <p className={styles.description}>Choisissez le problème observé sur la poubelle.</p> : ' '}
       <form className={styles.form}>
         <button type="button" className={`${styles.button} ${!form.isHere ? styles.checked : null}`} onClick={toggle('isHere')}>
           La poubelle n'est plus là

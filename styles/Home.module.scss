@@ -8,44 +8,55 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: var(--main-color);
+  background-color: white;
 
-  .search{
+  .search {
+    flex-grow: 1;
+    max-width: 600px;
     padding: var(--marge-small);
 
-    input{
-      padding: var(--marge-xs);
+    input {
+      width: 100%;
+      padding: var(--marge-small);
       border: none;
+      border: 2px var(--main-color) solid;
       border-radius: var(--border-radius);
     }
   }
 
-  .nav{
+  .nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap-reverse;
     background-color: var(--background-color);
   }
 
-  .filter-container, .action-container{
+  .filter-container,
+  .action-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: var(--marge-xs) var(--marge-small);
   }
 
-  .action-container{
-    .btn{
-      padding: var(--marge-xs) var(--marge-medium);
-      color: #FFFFFF;
-      background-color: var(--highlight-color);
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      user-select: none;
+  .btn {
+    padding: 1rem 2rem;
+    color: #ffffff;
+    border: 0;
+    font-size: 1.3rem;
+    background-color: $green;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    user-select: none;
 
-      &:hover{
-        background-color: var(--highlight-color-light);
-      }
+    &:hover {
+      background-color: var(--highlight-color-light);
+    }
+
+    & > * {
+      display: inline-block;
+      margin: 0;
     }
   }
 }
@@ -69,7 +80,7 @@
   align-items: center;
 }
 
-.filter{
+.filter {
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -94,7 +105,7 @@
   width: 100%;
 }
 
-.checkmark{
+.checkmark {
   position: absolute;
   top: 0;
   left: 0;
@@ -105,9 +116,9 @@
 }
 
 .filter:not(:hover) input ~ .checkmark {
-  color: #DDDDDD;
+  color: #dddddd;
 }
 
 .filter input:checked ~ .checkmark {
-  color: #FFFFFF;
+  color: #ffffff;
 }

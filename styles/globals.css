@@ -4,15 +4,15 @@
   --marge-large: 4rem;
   --marge-medium: 2rem;
   --marge-small: 1rem;
-  --marge-xs: .5rem;
+  --marge-xs: 0.5rem;
 
-  --border-radius: .2rem;
+  --border-radius: 0.2rem;
 
   --background-color: white;
-  --main-color: #054654;
-  --highlight-color: #00CA90;
-  --highlight-color-light: #00E5A4;
-  --grey-color: #DDDDDD;
+  --main-color: #76c893;
+  --highlight-color: #00ca90;
+  --highlight-color-light: #00e5a4;
+  --grey-color: #dddddd;
 
   --breakpoint-sm: 640px;
 }
