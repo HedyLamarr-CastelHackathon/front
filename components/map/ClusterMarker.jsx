@@ -1,23 +1,27 @@
 /* eslint-disable global-require */
-import { Marker } from 'react-leaflet';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import GarbageIcon from './GarbageIcon';
 
 const ClusterMarker = ({ points }) => {
   const scale = 1;
-  const baseIconSize = 32;
+  const baseIconSize = 40;
   const scaledIconSize = baseIconSize * scale;
-  const icon = L.icon({
-    iconUrl: require('assets/trash-alt-solid-green.svg'),
+  const icon = L.divIcon({
     iconSize: [scaledIconSize, scaledIconSize],
     iconAnchor: [scaledIconSize / 2, scaledIconSize],
     popupAnchor: null,
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
+    html: renderToStaticMarkup(<GarbageIcon color="#ffffff" text={points.length} />),
   });
 
+  const map = useMap();
+
   const onClick = () => {
-    console.log(points);
+    map.flyTo(new L.LatLng(points[0].geo.localisation[0], points[0].geo.localisation[1]), 15);
   };
 
   const eventHandlers = {
