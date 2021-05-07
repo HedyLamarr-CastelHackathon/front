@@ -30,9 +30,7 @@ const ClusterMarker = ({ points }) => {
 
   return (
     <>
-      <Marker position={points[0].geo.localisation} icon={icon} eventHandlers={eventHandlers}>
-        <p>{points.length}</p>
-      </Marker>
+      <Marker position={points[0].geo.localisation} icon={icon} eventHandlers={eventHandlers} />
     </>
   );
 };

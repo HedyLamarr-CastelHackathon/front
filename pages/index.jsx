@@ -6,6 +6,8 @@ import Head from 'next/head';
 import Map from 'components/map';
 import styles from 'styles/Home.module.scss';
 import FilterCheckbox from 'components/FilterCheckbox';
+import { useOverlayContent } from 'contexts/overlay-context';
+import Wish from 'components/Wish';
 
 const LOC_OPTIONS = {
   enableHighAccuracy: true,
@@ -20,6 +22,7 @@ const Home = () => {
     { color: '#ECF10E', code: 'C2', checked: true },
     { color: '#2AE51A', code: 'C3', checked: false },
   ]);
+  const { dispatch } = useOverlayContent();
 
   const stringToArray = (string) =>
     string
@@ -29,8 +32,7 @@ const Home = () => {
 
   const getGarbageGeo = (garbage) => ({ ...garbage, geo: { ...garbage.geo, localisation: stringToArray(garbage.geo.localisation) } });
 
-  // eslint-disable-next-line consistent-return
-  useEffect(async () => {
+  const triggerGeolocation = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         // eslint-disable-next-line no-use-before-define
@@ -43,7 +45,11 @@ const Home = () => {
     } else {
       console.log('geolocation not disponible');
     }
+  };
 
+  // eslint-disable-next-line consistent-return
+  useEffect(async () => {
+    triggerGeolocation();
     try {
       const res = await get('/garbages');
       const newGarbageList = res['hydra:member'].map(getGarbageGeo);
@@ -57,6 +63,10 @@ const Home = () => {
     setPosition([pos.coords.latitude, pos.coords.longitude]);
   });
 
+  const onClickWish = () => {
+    dispatch({ type: 'show', payload: { component: Wish, props: { position } } });
+  };
+
   return (
     <>
       <Head>
@@ -68,7 +78,7 @@ const Home = () => {
         <div className={styles.search}>
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="search" hidden>
-            Search the adress:
+            Mon adresse...
           </label>
           <input type="search" id="search" name="q" list="search-datalist" placeholder="Recherche" />
           <datalist id="search-datalist">
@@ -76,15 +86,20 @@ const Home = () => {
             <option value="200 rue Machin" />
           </datalist>
         </div>
+        <button type="button" className={styles.btn} onClick={() => triggerGeolocation()}>
+          Se localiser
+        </button>
         <div className={styles.nav}>
           <div className={styles['filter-container']}>
-            <p>filters:</p>
+            <p>Filtrer : </p>
             {garbageTypes.map((type, i) => (
               <FilterCheckbox key={i} index={i} types={garbageTypes} setTypes={setGarbageTypes} />
             ))}
           </div>
           <div className={styles['action-container']}>
-            <div className={styles.btn}>Signaler</div>
+            <button type="button" className={styles.btn} onClick={() => onClickWish()}>
+              Demande
+            </button>
           </div>
         </div>
       </header>
